@@ -317,7 +317,7 @@ function TVPlayer({ componentId }: { componentId: string }) {
             >
               <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={[styles.lyricContent, appleLayout.lyricContent]} scrollEnabled={false}>
                 {displayLyrics.map(item => (
-                  <View key={item.key} style={[styles.lyricRow, item.active ? styles.lyricRowActive : null]}>
+                  <View key={item.key} style={[styles.lyricRow, item.active ? styles.lyricRowActive : item.distance === 1 ? styles.lyricRowNear : null]}>
                     <TVText
                       variant={item.active ? 'pageTitle' : 'sectionTitle'}
                       style={[
@@ -584,9 +584,10 @@ const styles: Record<string, ViewStyle | TextStyle | ImageStyle | any> = {
   lyricContent: { flexGrow: 1, justifyContent: 'center', paddingTop: 0, paddingBottom: 0 },
   lyricRow: { marginVertical: 3, opacity: 0.42 },
   lyricRowActive: { opacity: 1, marginVertical: 11 },
+  lyricRowNear: { opacity: 0.85, marginVertical: 8 },
   lyricText: { textAlign: 'left' },
   lyricTextActive: { color: tvColors.lyricActive, letterSpacing: 0, textShadowColor: 'rgba(0,0,0,0.50)', textShadowRadius: 24 },
-  lyricTextNear: { color: 'rgba(247,248,251,0.31)' },
+  lyricTextNear: { color: '#ffffff', textShadowColor: 'rgba(0,0,0,0.35)', textShadowRadius: 16 },
   lyricTextFar: { color: 'rgba(247,248,251,0.16)' },
   translation: { marginTop: 6, color: tvColors.primaryHigh },
   dock: { paddingHorizontal: 0, paddingBottom: 0, marginTop: 0 },
